@@ -37,6 +37,17 @@ export const links = {
   gtmId: 'GTM-WKQ2BRD9',
 };
 
+// Trava de segurança: o build falha se alguém trocar o checkout ou o WhatsApp por um link fora
+// dos domínios oficiais (evita publicar um link de pagamento falso por engano ou de propósito).
+export function assertOfficialLink(url: string, host: string) {
+  const u = new URL(url);
+  if (u.protocol !== 'https:' || u.hostname !== host || u.username || u.password)
+    throw new Error(`Link não oficial bloqueado: ${url} (esperado https://${host}/...)`);
+}
+assertOfficialLink(links.checkout, 'pay.hotmart.com');
+assertOfficialLink(links.whatsapp, 'wa.me');
+if (!/^GTM-[A-Z0-9]+$/.test(links.gtmId)) throw new Error(`ID do GTM inválido: ${links.gtmId}`);
+
 export const stats = [
   { value: '5', label: 'turmas lotadas' },
   { value: '7', label: 'módulos práticos' },

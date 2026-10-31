@@ -1,6 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { remaining, pad } from './countdown';
-import { brl } from '../data/site';
+import { brl, assertOfficialLink } from '../data/site';
+
+describe('assertOfficialLink', () => {
+  it('accepts the official Hotmart checkout', () => {
+    expect(() => assertOfficialLink('https://pay.hotmart.com/V102260170T?off=x', 'pay.hotmart.com')).not.toThrow();
+  });
+  it.each([
+    'http://pay.hotmart.com/V1',                 // sem https
+    'https://pay.hotmart.com.golpe.com/V1',      // domínio parecido
+    'https://pay-hotmart.com/V1',                // domínio falso
+    'https://pay.hotmart.com@golpe.com/V1',      // truque de usuário na URL
+    'javascript:alert(1)',                       // esquema perigoso
+  ])('rejects %s', (url) => {
+    expect(() => assertOfficialLink(url, 'pay.hotmart.com')).toThrow();
+  });
+});
 
 const target = new Date('2026-11-01T09:00:00-03:00');
 
