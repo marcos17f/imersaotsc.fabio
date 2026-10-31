@@ -1,0 +1,16 @@
+#!/bin/sh
+# Shift-left: barra o commit antes de chegar ao GitHub.
+# Ativar uma vez por máquina: git config core.hooksPath .githooks
+set -e
+
+# 1. Segredos óbvios nos arquivos que vão ser commitados
+if git diff --cached -U0 | grep -nE '^\+.*(AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|ghp_[A-Za-z0-9]{36}|xox[baprs]-[A-Za-z0-9-]+|(api[_-]?key|secret|token|senha|password)["'"'"' ]*[:=] *["'"'"'][^"'"'"'$]{12,})'; then
+  echo "pre-commit: parece haver um segredo no commit acima. Remova antes de commitar." >&2
+  exit 1
+fi
+
+# 2. Testes de lógica e segurança (links oficiais, cabeçalhos) + tipos, só se o site mudou
+if git diff --cached --name-only | grep -q '^web/'; then
+  npm --prefix web test --silent
+  npm --prefix web run check --silent
+fi

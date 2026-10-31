@@ -1,0 +1,27 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 9 * * 1' # toda segunda, pega vulnerabilidades novas em código antigo
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: Análise estática (JS/TS)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-extended
+          config: |
+            paths: [web/src, web/tests]
+      - uses: github/codeql-action/analyze@v3
