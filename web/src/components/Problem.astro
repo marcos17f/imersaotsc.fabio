@@ -1,13 +1,24 @@
 ---
-import { symptoms, costs } from '../data/site';
+import { wants, symptoms, costs } from '../data/site';
 ---
 <section id="problema" class="section bg-bg2">
   <div class="wrap">
-    <p class="eyebrow">O problema</p>
-    <h2 class="h2">Não é o funcionário, o cliente, a concorrência nem a crise. É falta de método.</h2>
-    <div class="mt-11 grid gap-12 md:grid-cols-2 md:gap-14">
+    <p class="eyebrow">Você concorda?</p>
+    <h2 class="h2">Você abriu essa loja pra ter liberdade. E virou refém do que construiu.</h2>
+    <p class="mt-4 max-w-2xl text-muted">
+      Aprendeu a consertar, fez curso caro, tomou coragem, abriu a loja e conquistou clientes. Deu certo. Até que, sem perceber, a loja passou a depender de você pra tudo.
+    </p>
+    <ul class="mt-9 grid gap-x-12 md:grid-cols-2">
+      {wants.map((w) => (
+        <li class="border-b border-line py-3.5 text-muted"><b class="text-ink">{w.want}</b> {w.but}</li>
+      ))}
+      <li class="border-b border-line py-3.5 font-semibold">Você trabalha mais que qualquer funcionário. Chega primeiro, sai por último. E a loja não sai do lugar.</li>
+    </ul>
+
+    <h3 class="mt-16 max-w-3xl text-2xl leading-tight font-bold md:text-3xl">Não é o funcionário, o cliente, a concorrência nem a crise. É falta de método.</h3>
+    <div class="mt-9 grid gap-12 md:grid-cols-2 md:gap-14">
       <div>
-        <p class="text-muted">O que parece estar travando a sua loja:</p>
+        <p class="text-muted">Você provavelmente já culpou:</p>
         <ul class="mt-2 text-muted">
           {symptoms.map((s) => <li class="border-b border-line py-3.5">{s}</li>)}
         </ul>

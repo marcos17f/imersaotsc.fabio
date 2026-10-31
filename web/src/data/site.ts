@@ -49,13 +49,22 @@ assertOfficialLink(links.whatsapp, 'wa.me');
 if (!/^GTM-[A-Z0-9]+$/.test(links.gtmId)) throw new Error(`ID do GTM inválido: ${links.gtmId}`);
 
 export const stats = [
+  { value: '203+', label: 'donos de assistência já passaram' },
   { value: '5', label: 'turmas lotadas' },
   { value: '7', label: 'módulos práticos' },
-  { value: '2 dias', label: '100% presenciais' },
   { value: '30 dias', label: 'de acompanhamento depois' },
 ];
 
+export const wants = [
+  { want: 'Você quer crescer,', but: 'mas passa o dia inteiro na bancada resolvendo o que ninguém mais resolve.' },
+  { want: 'Você quer contratar,', but: 'mas todo funcionário que entra dá mais trabalho do que alívio. Quando não vira seu concorrente.' },
+  { want: 'Você quer tirar férias,', but: 'mas sabe que na sua ausência o faturamento cai e o problema acumula. Ou a loja nem abre.' },
+  { want: 'Você quer ganhar mais,', but: 'mas quanto mais serviço entra, mais preso você fica.' },
+  { want: 'Você quer estar com sua família,', but: 'mas chega em casa sem paciência pra quem você mais ama.' },
+];
+
 export const symptoms = [
+  'A falta de tempo',
   'O funcionário que não vestiu a camisa',
   'O cliente que só quer preço',
   'A concorrência que cobra barato',
@@ -81,13 +90,13 @@ export const notThis = [
 ];
 
 export const modules = [
-  { title: 'Mentalidade de dono', text: 'Pare de pensar como técnico e comece a decidir como empresário.' },
+  { title: 'Mentalidade de empresário', text: 'Quebre as crenças e travas que mantêm você preso na bancada.' },
   { title: 'Atendimento que gera confiança', text: 'O cliente passa a comprar pela confiança, não pelo preço.' },
   { title: 'Vendas e precificação', text: 'Venda mais, cobre certo e pare de perder dinheiro com desconto.' },
   { title: 'Divulgação estratégica', text: 'Clientes chegando sempre, sem depender só de indicação.' },
   { title: 'Gestão e processos', text: 'A empresa continua rodando quando você não está.' },
   { title: 'Equipe e liderança', text: 'Contrate, desenvolva e lidere sem virar refém de funcionário.' },
-  { title: 'Receba antes de executar', text: 'Fim do fiado e do serviço feito sem pagamento.' },
+  { title: 'Receba antes de executar', text: 'Menos aparelho parado esperando pagamento e caixa melhor já na primeira semana.' },
 ];
 
 export const cases = [
