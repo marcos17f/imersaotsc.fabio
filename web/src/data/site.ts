@@ -1,11 +1,12 @@
-// Fonte única de datas, preços e links. Trocar de turma = editar só este arquivo.
+// Fonte única de datas, preços e links. Trocar de turma = editar só este arquivo
+// (event, offer e, se a Hotmart gerar oferta nova, links.checkout). Conferir com o checkout da Hotmart.
 
 export const brl = (v: number) => 'R$ ' + v.toLocaleString('pt-BR');
 
 export const event = {
-  startsAt: '2026-11-01T09:00:00-03:00',
-  dateLabel: '01 e 02 de novembro',
-  daysLabel: 'Domingo e segunda (feriado)',
+  startsAt: '2026-10-31T09:00:00-03:00',
+  dateLabel: '31 de outubro e 01 de novembro',
+  daysLabel: 'Sábado e domingo',
   hours: '9h às 19h',
   address: 'R. Airi, 227 – Vila Gomes Cardim',
   city: 'São Paulo – SP, 03310-010',
@@ -112,7 +113,7 @@ export const videos = [
 ];
 
 export const faq = [
-  { q: 'Não posso fechar a loja 2 dias.', a: `A imersão é num domingo e num feriado justamente por isso. E se você não consegue se afastar nem assim, esse é o maior sinal de que precisa vir.` },
+  { q: 'Não posso fechar a loja 2 dias.', a: `A imersão é no fim de semana justamente por isso. E se você não consegue se afastar nem 2 dias, esse é o maior sinal de que precisa vir.` },
   { q: 'E se a loja der problema enquanto eu estiver aí?', a: 'Se a loja não sobrevive 48 horas sem você, o problema não é a imersão. É a loja. E é exatamente isso que a gente vem resolver.' },
   { q: 'Moro longe. Vale a pena?', a: 'A maioria não é de São Paulo; já veio gente de 38 horas de ônibus. A gente indica hospedagem perto do local e orienta o deslocamento. Você não se vira sozinho.' },
   { q: 'Já fiz curso e não mudou nada.', a: 'Curso ensina o que fazer. A imersão muda quem você é enquanto dono. Por isso o método começa pela mentalidade, não pela planilha.' },

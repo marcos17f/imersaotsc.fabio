@@ -128,11 +128,11 @@ primeira tela e usar o botão ↑.
 - **FR-013**: Dúvidas MUST ter as perguntas do site atual em sanfona (abre/fecha) e um link para o
   WhatsApp.
 - **FR-014**: Os textos MUST reaproveitar o texto de vendas atual, enxugado, sem emojis e sem
-  contradições. Dias do evento: domingo 01/11 e segunda 02/11/2026 (Finados), das 9h às 19h; o FAQ
-  "Não posso fechar a loja 2 dias" é reescrito para domingo + feriado (antes dizia "sábado e domingo").
+  contradições. Dias do evento: sábado 31/10 e domingo 01/11/2026, das 9h às 19h (confirmado pelo
+  cliente e pelo checkout da Hotmart em 2026-10-31).
 - **FR-015**: Preço: de R$2.057 por 12x de R$97 ou R$997 à vista, 2 ingressos pelo preço de 1, lote
   zero. O FAQ é corrigido para esses valores (antes citava 12x R$89 e R$897).
-- **FR-016**: A contagem regressiva MUST contar até o início do evento (01/11/2026 às 9h, horário de
+- **FR-016**: A contagem regressiva MUST contar até o início do evento (31/10/2026 às 9h, horário de
   Brasília), já que não há prazo de lote informado.
 - **FR-017**: Data, horário, local, preços, prazo do lote e links MUST vir de uma única fonte, de
   modo que cada valor apareça igual em toda a página.
