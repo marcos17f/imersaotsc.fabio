@@ -1,0 +1,62 @@
+---
+import { links } from '../data/site';
+
+const items = [
+  ['#problema', 'O problema'],
+  ['#metodo', 'O método'],
+  ['#programa', 'Programa'],
+  ['#casos', 'Casos reais'],
+  ['#investimento', 'Investimento'],
+  ['#duvidas', 'Dúvidas'],
+];
+---
+<nav class="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
+  <div class="wrap flex h-16 items-center gap-4">
+    <a href="#top" class="leading-none font-extrabold tracking-wide">
+      TSC<span class="block text-[9px] font-medium tracking-[0.2em] text-muted">IMERSÃO</span>
+    </a>
+    <ul id="menu" class="hidden flex-1 justify-center gap-6 text-sm text-muted lg:flex">
+      {items.map(([href, label]) => <li><a href={href} class="hover:text-ink">{label}</a></li>)}
+    </ul>
+    <a data-cta="checkout" href={links.checkout} target="_blank" rel="noopener" class="btn ml-auto px-4 py-2.5 text-xs lg:ml-0">
+      <span class="lg:hidden">Ingresso</span><span class="hidden lg:inline">Garantir ingresso</span>
+    </a>
+    <button id="menu-btn" class="p-2 text-2xl leading-none lg:hidden" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">☰</button>
+  </div>
+</nav>
+
+<style>
+  @media (max-width: 1023px) {
+    #menu.open {
+      display: flex;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-line);
+      font-size: 1rem;
+    }
+    #menu.open a {
+      display: block;
+      padding: 14px 20px;
+      border-top: 1px solid var(--color-line);
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('menu-btn')!;
+  const menu = document.getElementById('menu')!;
+  const set = (open: boolean) => {
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? '✕' : '☰';
+  };
+  btn.addEventListener('click', () => set(!menu.classList.contains('open')));
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) set(false);
+  });
+</script>

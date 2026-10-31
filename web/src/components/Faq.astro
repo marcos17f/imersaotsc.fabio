@@ -1,0 +1,24 @@
+---
+import { faq, links } from '../data/site';
+---
+<section id="duvidas" class="section bg-bg2">
+  <div class="wrap">
+    <p class="eyebrow">Dúvidas</p>
+    <h2 class="h2">“Fábio, mas e se...”</h2>
+    <div class="mt-9 max-w-3xl">
+      {faq.map((f) => (
+        <details class="group border-b border-line py-5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+            {f.q}
+            <span class="text-2xl leading-none text-accent group-open:rotate-45 transition">+</span>
+          </summary>
+          <p class="mt-3 text-muted">{f.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-muted">
+      Não achou sua resposta?
+      <a data-cta="whatsapp" href={links.whatsapp} target="_blank" rel="noopener" class="font-semibold text-accent">Chama o time no WhatsApp →</a>
+    </p>
+  </div>
+</section>

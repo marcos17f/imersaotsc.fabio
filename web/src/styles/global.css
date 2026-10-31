@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0b0f17;
+  --color-bg2: #111722;
+  --color-line: #1f2633;
+  --color-ink: #e8eaed;
+  --color-muted: #9aa3b2;
+  --color-accent: #22c55e;
+  --color-accent-ink: #04140a;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+body {
+  @apply bg-bg text-ink font-sans antialiased;
+}
+
+@layer components {
+  .wrap { @apply mx-auto max-w-[1120px] px-5; }
+  .section { @apply border-t border-line py-16 md:py-24; }
+  .eyebrow { @apply mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-accent; }
+  .h2 { @apply max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-[40px]; }
+  .btn, .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-md px-6 py-4 text-sm font-bold uppercase
+      tracking-wide transition focus-visible:outline-2 focus-visible:outline-offset-2
+      focus-visible:outline-accent;
+  }
+  .btn { @apply bg-accent text-accent-ink hover:brightness-110; }
+  .btn-ghost { @apply border border-line text-ink hover:border-muted; }
+  .card { @apply rounded-xl border border-line bg-bg p-7; }
+  .num { @apply text-sm font-bold text-accent; }
+}

@@ -1,0 +1,21 @@
+---
+import { modules, links } from '../data/site';
+---
+<section id="programa" class="section bg-bg2">
+  <div class="wrap">
+    <p class="eyebrow">Programa</p>
+    <h2 class="h2">7 módulos. Da cabeça do dono ao caixa da loja.</h2>
+    <div class="mt-11 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {modules.map((m, i) => (
+        <div class="bg-bg p-6">
+          <span class="num">0{i + 1}</span>
+          <h3 class="mt-2 mb-1.5 font-bold">{m.title}</h3>
+          <p class="text-sm text-muted">{m.text}</p>
+        </div>
+      ))}
+      <div class="flex items-center bg-bg p-6">
+        <a data-cta="checkout" href={links.checkout} target="_blank" rel="noopener" class="btn w-full text-xs">Quero participar</a>
+      </div>
+    </div>
+  </div>
+</section>

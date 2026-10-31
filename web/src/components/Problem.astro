@@ -1,0 +1,24 @@
+---
+import { symptoms, costs } from '../data/site';
+---
+<section id="problema" class="section bg-bg2">
+  <div class="wrap">
+    <p class="eyebrow">O problema</p>
+    <h2 class="h2">Não é o funcionário, o cliente, a concorrência nem a crise. É falta de método.</h2>
+    <div class="mt-11 grid gap-12 md:grid-cols-2 md:gap-14">
+      <div>
+        <p class="text-muted">O que parece estar travando a sua loja:</p>
+        <ul class="mt-2 text-muted">
+          {symptoms.map((s) => <li class="border-b border-line py-3.5">{s}</li>)}
+        </ul>
+        <p class="mt-7 border-l-2 border-accent pl-5 text-2xl leading-snug font-semibold">Todos são sintomas de uma coisa só.</p>
+      </div>
+      <div>
+        <p class="text-muted">E enquanto isso, o que a loja está te cobrando:</p>
+        <ul class="mt-2 text-muted">
+          {costs.map((c) => <li class="border-b border-line py-3.5"><b class="text-ink">{c.title}</b> {c.text}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

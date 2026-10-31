@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import deyvison from '../assets/img/caso-deyvison.webp';
+import daniel from '../assets/img/caso-daniel.webp';
+import evandro from '../assets/img/caso-evandro.webp';
+import turmas from '../assets/img/turmas.webp';
+import { cases, videos, links } from '../data/site';
+
+const img = { 'caso-deyvison': deyvison, 'caso-daniel': daniel, 'caso-evandro': evandro };
+---
+<section id="casos" class="section">
+  <div class="wrap">
+    <p class="eyebrow">Casos reais</p>
+    <h2 class="h2">Gente que saiu da bancada.</h2>
+
+    <div class="-mx-5 mt-11 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-3 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
+      {cases.map((c) => (
+        <article class="card w-[85%] shrink-0 snap-start overflow-hidden p-0 md:w-auto">
+          <Image src={img[c.image]} alt={`Antes e depois de ${c.name}`} widths={[400, 720]} sizes="(min-width: 768px) 360px, 85vw" class="aspect-[16/10] w-full object-cover" />
+          <div class="p-6">
+            <p class="text-lg leading-snug font-semibold">“{c.quote}”</p>
+            <dl class="mt-4 grid gap-2.5 text-sm">
+              <div><dt class="text-[11px] font-semibold tracking-[0.12em] text-accent uppercase">Antes</dt><dd class="text-muted">{c.before}</dd></div>
+              <div><dt class="text-[11px] font-semibold tracking-[0.12em] text-accent uppercase">Depois</dt><dd class="text-muted">{c.after}</dd></div>
+            </dl>
+            <p class="mt-4 text-sm"><b>{c.name}</b> <span class="text-muted">· {c.role}</span></p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <h3 class="mt-16 text-xl font-bold">Ouça de quem já passou pela sala</h3>
+    <div class="-mx-5 mt-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-3 md:mx-0 md:grid md:grid-cols-3 md:px-0">
+      {videos.map((v) => (
+        <button type="button" data-video={v.youtubeId} aria-label={`Assistir depoimento de ${v.name}`}
+          class="video group relative aspect-[9/16] w-[62%] shrink-0 snap-start overflow-hidden rounded-xl border border-line bg-black md:w-auto">
+          <img src={`https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" class="absolute inset-0 h-full w-full scale-[1.35] object-cover opacity-80 transition group-hover:opacity-100" />
+          <span class="absolute inset-x-0 bottom-0 flex items-center gap-3 bg-gradient-to-t from-black/90 to-transparent p-4 text-left">
+            <span class="grid size-11 place-items-center rounded-full bg-accent text-accent-ink">▶</span>
+            <span class="font-semibold text-white">{v.name}</span>
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <Image src={turmas} alt="Fotos das 5 turmas da Imersão TSC" widths={[640, 1120]} sizes="(min-width: 1120px) 1080px, 100vw" class="mt-12 w-full rounded-xl" loading="lazy" />
+
+    <div class="mt-11 flex flex-wrap items-center justify-between gap-5 rounded-xl border border-line p-7">
+      <div>
+        <h3 class="text-xl font-bold">Essa sala já encheu 5 vezes.</h3>
+        <p class="mt-1.5 max-w-xl text-muted">Tem gente que pegou 38 horas de ônibus pra estar nela. Quando você cansa de verdade, distância vira detalhe.</p>
+      </div>
+      <a data-cta="checkout" href={links.checkout} target="_blank" rel="noopener" class="btn">Quero garantir minha vaga</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button[data-video]').forEach((b) =>
+    b.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${b.dataset.video}?autoplay=1&playsinline=1`;
+      f.title = b.getAttribute('aria-label') ?? 'Depoimento';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture';
+      f.allowFullscreen = true;
+      f.className = 'absolute inset-0 h-full w-full';
+      b.replaceChildren(f);
+    }, { once: true }),
+  );
+</script>

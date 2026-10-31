@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/img/hero.webp';
+import { event, offer, links, stats } from '../data/site';
+---
+<header class="relative overflow-hidden">
+  <!-- celular: foto em faixa no topo; desktop: foto de fundo à direita -->
+  <div class="relative h-[220px] sm:h-[320px] lg:absolute lg:inset-0 lg:h-auto">
+    <Image src={hero} alt="Fábio Gimenes conduzindo a Imersão TSC" loading="eager" fetchpriority="high"
+      widths={[800, 1400, 2007]} sizes="100vw"
+      class="h-full w-full object-cover object-[88%_25%] lg:object-right" />
+    <div class="absolute inset-0 bg-gradient-to-t from-bg to-transparent to-60% lg:bg-gradient-to-r lg:from-bg lg:from-35% lg:via-bg/60 lg:via-55% lg:to-transparent"></div>
+  </div>
+  <div class="wrap relative -mt-6 pb-10 lg:mt-0 lg:flex lg:min-h-[600px] lg:flex-col lg:justify-center lg:py-20">
+    <p class="eyebrow">Imersão presencial · Método Técnico Sem Crise</p>
+    <h1 class="max-w-xl text-[32px] leading-[1.1] font-bold tracking-tight md:text-5xl lg:text-[56px]">
+      Em 2 dias, sua assistência para de depender de você.
+    </h1>
+    <p class="mt-4 max-w-lg text-base text-muted md:mt-5 md:text-lg">
+      Gestão, vendas e equipe para donos de assistência técnica e loja de acessórios. Você sai com um plano escrito e sabendo o que fazer no dia seguinte.
+    </p>
+    <div class="mt-7 flex flex-wrap gap-3 md:mt-8">
+      <a data-cta="checkout" href={links.checkout} target="_blank" rel="noopener" class="btn">Garantir meu ingresso</a>
+      <a href="#programa" class="btn-ghost">Ver o programa</a>
+    </div>
+    <dl class="mt-7 md:mt-9 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:flex sm:gap-8">
+      <div><dt class="font-semibold">{event.dateLabel}</dt><dd class="text-muted">{event.daysLabel}</dd></div>
+      <div><dt class="font-semibold">São Paulo · Tatuapé</dt><dd class="text-muted">{event.landmark}</dd></div>
+      <div class="col-span-2"><dt class="font-semibold">{offer.bundle}</dt><dd class="text-muted">Traga seu sócio ou técnico</dd></div>
+    </dl>
+  </div>
+</header>
+<div class="wrap grid grid-cols-2 gap-6 border-t border-line py-9 md:grid-cols-4">
+  {stats.map((s) => (
+    <div><b class="block text-3xl leading-none font-bold md:text-4xl">{s.value}</b><span class="text-sm text-muted">{s.label}</span></div>
+  ))}
+</div>

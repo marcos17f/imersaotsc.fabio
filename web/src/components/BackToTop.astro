@@ -1,0 +1,14 @@
+<a id="back-to-top" href="#top" aria-label="Voltar ao topo"
+  class="pointer-events-none fixed right-5 bottom-5 z-40 grid size-13 translate-y-3 place-items-center rounded-full bg-accent text-2xl font-bold text-accent-ink opacity-0 shadow-lg shadow-black/40 transition">↑</a>
+
+<script>
+  const b = document.getElementById('back-to-top')!;
+  const show = () => {
+    const on = scrollY > innerHeight;
+    b.classList.toggle('opacity-0', !on);
+    b.classList.toggle('pointer-events-none', !on);
+    b.classList.toggle('translate-y-3', !on);
+  };
+  addEventListener('scroll', show, { passive: true });
+  show();
+</script>

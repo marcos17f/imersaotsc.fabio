@@ -1,0 +1,64 @@
+---
+import { event, offer, links, brl } from '../data/site';
+---
+<section id="investimento" class="section bg-bg2">
+  <div class="wrap">
+    <p class="eyebrow">Investimento</p>
+    <h2 class="h2">{offer.lot}: o menor valor que esta imersão vai ter.</h2>
+    <div class="mt-11 grid overflow-hidden rounded-2xl border border-line lg:grid-cols-[1.1fr_.9fr]">
+      <div class="bg-bg p-7 md:p-10">
+        <h3 class="text-xl font-bold">O que está incluso</h3>
+        <ul class="mt-2">
+          {offer.includes.map((i) => (
+            <li class="relative border-b border-line py-3 pl-6 before:absolute before:top-[22px] before:left-0 before:h-0.5 before:w-3 before:bg-accent">{i}</li>
+          ))}
+        </ul>
+        <div class="mt-7 grid gap-5 text-sm sm:grid-cols-2">
+          <div><b>Quando</b><p class="text-muted">{event.dateLabel}<br />{event.daysLabel}<br />{event.hours}</p></div>
+          <div><b>Onde</b><p class="text-muted">{event.address}<br />{event.city}<br />{event.landmark}</p></div>
+        </div>
+        <p class="mt-5 text-sm text-muted">Depois da compra você entra num grupo de WhatsApp com dicas de hotel, aeroporto e restaurantes.</p>
+      </div>
+      <div class="border-t border-line p-7 md:p-10 lg:border-t-0 lg:border-l">
+        <p class="eyebrow">{offer.bundle}</p>
+        <p class="text-muted">de <s>{brl(offer.fullPrice)}</s> por {offer.installments}x de</p>
+        <p class="text-6xl leading-none font-bold">{brl(offer.installmentValue)}</p>
+        <p class="mt-2 text-muted">ou {brl(offer.cashPrice)} à vista</p>
+
+        <div id="countdown" data-target={event.startsAt} class="mt-7">
+          <p class="text-sm text-muted" data-label>O preço sobe em</p>
+          <div class="mt-2.5 flex gap-2.5" data-units>
+            {[['days', 'dias'], ['hours', 'horas'], ['minutes', 'min'], ['seconds', 'seg']].map(([u, l]) => (
+              <div class="w-16 rounded-lg border border-line py-2.5 text-center">
+                <b class="block text-2xl tabular-nums" data-unit={u}>--</b><span class="text-[10px] text-muted uppercase">{l}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <a data-cta="checkout" href={links.checkout} target="_blank" rel="noopener" class="btn mt-7 w-full">Garantir meu ingresso</a>
+        <a data-cta="whatsapp" href={links.whatsapp} target="_blank" rel="noopener" class="btn-ghost mt-2.5 w-full">Falar com o time no WhatsApp</a>
+        <p class="mt-4 text-xs text-muted">{offer.guarantee}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { remaining, pad } from '../lib/countdown';
+  const el = document.getElementById('countdown')!;
+  const target = new Date(el.dataset.target!);
+  const tick = () => {
+    const r = remaining(target, new Date());
+    if (r.done) {
+      el.querySelector('[data-label]')!.textContent = 'Últimas vagas neste lote';
+      el.querySelector('[data-units]')!.remove();
+      clearInterval(timer);
+      return;
+    }
+    for (const u of ['days', 'hours', 'minutes', 'seconds'] as const)
+      el.querySelector(`[data-unit=${u}]`)!.textContent = pad(r[u]);
+  };
+  const timer = setInterval(tick, 1000);
+  tick();
+</script>
