@@ -7,6 +7,12 @@ const headers: Record<string, string> = Object.fromEntries(
   config.headers.find((h: { source: string }) => h.source === '/(.*)').headers.map((h: { key: string; value: string }) => [h.key, h.value]),
 );
 
+describe('vercel.json build gate', () => {
+  it('runs the tests before every Vercel build', () => {
+    expect(config.buildCommand).toMatch(/^npm test && /);
+  });
+});
+
 describe('vercel.json security headers', () => {
   it('forces HTTPS', () => expect(headers['Strict-Transport-Security']).toMatch(/max-age=\d{8,}/));
   it('blocks clickjacking', () => {

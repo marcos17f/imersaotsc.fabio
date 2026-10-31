@@ -1,0 +1,10 @@
+#!/bin/sh
+# Shift-left: nada sobe para o GitHub (e portanto para a Vercel) sem passar nos testes de navegador.
+# Ativar uma vez por máquina: git config core.hooksPath .githooks
+set -e
+
+echo "pre-push: auditoria de dependências..."
+npm --prefix web audit --omit=dev --audit-level=high
+
+echo "pre-push: testes no navegador (390px e 1440px)..."
+npm --prefix web run e2e --silent
