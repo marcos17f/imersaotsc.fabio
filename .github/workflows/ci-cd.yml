@@ -62,7 +62,7 @@ jobs:
       - name: Testes no navegador (Playwright 390px e 1440px)
         run: npm run e2e
       - if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-report
           path: web/test-results/
